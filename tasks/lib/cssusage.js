@@ -1,8 +1,8 @@
 /*
- * grunt-contrib-jshint
- * http://gruntjs.com/
+ * grunt-css-usage
+ * https://github.com/julienvalery/grunt-css-usage
  *
- * Copyright (c) 2013 "Cowboy" Ben Alman, contributors
+ * Copyright (c) 2014 darul75
  * Licensed under the MIT license.
  */
 

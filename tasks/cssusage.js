@@ -2,7 +2,7 @@
  * grunt-css-usage
  * https://github.com/julienvalery/grunt-css-usage
  *
- * Copyright (c) 2014 darul
+ * Copyright (c) 2014 darul75
  * Licensed under the MIT license.
  */
 
