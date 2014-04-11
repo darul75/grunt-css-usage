@@ -91,7 +91,7 @@ exports.init = function(grunt) {
             if (!report.results[selector])
               report.results[selector] = {count:length};
             else if (report.results[selector] && length > 0) {
-              report.results[selector] = {count:length};
+              report.results[selector] = {count:report.results[selector].count+length};
             }
           }
           catch (e) {            
