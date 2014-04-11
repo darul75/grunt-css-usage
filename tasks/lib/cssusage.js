@@ -81,12 +81,13 @@ exports.init = function(grunt) {
 
 
         var cxt = {};
+        var dom = $(data);
 
         for (var i = 0;i<selectors.length;i++) {
           var selector = selectors[i];          
 
           try {
-            var length = $(data).find(selector).length;
+            var length = dom.find(selector).length;
             if (!report.results[selector])
               report.results[selector] = {count:length};
             else if (report.results[selector] && length > 0) {
