@@ -32,13 +32,11 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     cssusage: {        
       files: {
-        // expand: true,
-        src: ['test/html/**/*.html', 'test/html/**/*.html'],
+        expand: true,
+        src: ['test/html/**/*.html', 'test/jade/**/*.jade'],        
         css: ['test/css/**/*.css', 'test/css2/**/*.css']
       }
-    },  
-
-    html: ['test/html/**/*.html'],  
+    },    
 
     // Unit tests.
     nodeunit: {

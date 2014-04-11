@@ -40,6 +40,8 @@
     "gruntplugin"
   ],
   "dependencies": {
+    "css-parse": "1.7.0",
+    "jade": "0.35.0",
     "jquery": "^2.1.0",
     "jsdom": "^0.10.5"
   }

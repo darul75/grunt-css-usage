@@ -10,24 +10,19 @@
 
 var env = require('jsdom').env;
 var fs = require('fs');
+var jade = require('jade');
 var jsdom = require('jsdom').jsdom;
+var path = require('path');
+var parse = require('css-parse');
 var $ = require("jquery")(jsdom().createWindow());
 
-var parse = require('css-parse');
-var path = require('path');
-
 exports.init = function(grunt) {
+
   var exports = {
     usingGruntReporter: false
   };
 
-  var pad = function(msg,length) {
-    while (msg.length < length) {
-      msg = ' ' + msg;
-    }
-    return msg;
-  };
-
+  var extensions = ['.htm', '.html', '.jade'];
 
   // Run JSHint on the given files with the given options
   exports.cssusage = function(css, html, options, done) {
@@ -38,16 +33,17 @@ exports.init = function(grunt) {
     var fileIdx = 0;
     var report = {
       results: {},
-      csserrors: []
+      csserrors: [],
+      markupcompileerrors: []
     };    
 
     // 1) PARSE CSS
-    css.forEach(function(path) {
-      grunt.log.writeln('Checking css file: "' + path + '.');
+    css.forEach(function(css_filepath) {
+      grunt.log.writeln('\nChecking css file: "' + css_filepath + '.\n');
 
-      var selectors = [];      
+      var selectors = [];
 
-      var data = fs.readFileSync(path, {encoding:'utf8'});      
+      var data = fs.readFileSync(css_filepath, {encoding:'utf8'});
       var output_obj = parse(data);
       //console.log(JSON.stringify(output_obj, null, 2));      
 
@@ -61,12 +57,28 @@ exports.init = function(grunt) {
       });
 
       // 2) TEST USAGE
-      html.forEach(function(path) {
-        grunt.log.writeln('Parsing markup file: "' + path + '.');
-        
-        report.html = path; // html path
+      html.forEach(function(filepath) {
+        grunt.log.writeln('-- For markup file: "' + filepath + '.\n');
 
-        var data = fs.readFileSync(path, {encoding:'utf8'});                      
+        var ext = path.extname(filepath); // check ext        
+
+        if (!$.inArray(ext, extensions))
+          return;
+        
+        report.html = filepath;
+
+        var data = fs.readFileSync(filepath, {encoding:'utf8'});                      
+
+        if (ext === '.jade') {
+          try {
+            data = jade.compile(data, {})();            
+          }
+          catch(e) {
+            report.markupcompileerrors.push(e + ' while compiling view :"' + filepath + '"');
+          }
+        }
+
+
         var cxt = {};
 
         for (var i = 0;i<selectors.length;i++) {

@@ -17,13 +17,16 @@ module.exports = function(grunt) {
     var options = this.options({
       punctuation: '.',
       separator: ', '
-    });    
+    });
+
+    var markups = [];
+    var csss = [];
 
     this.files.forEach(function(f) {       
 
-      // HTML
-      var markups = f.src.filter(function(filepath) {              
-          // Warn on and remove invalid source files (if nonull was set).
+      // MARKUPS DIGEST
+      var files = f.src.filter(function(filepath) {
+          
           if (!grunt.file.exists(filepath)) {
             grunt.log.warn('Source file "' + filepath + '" not found.');
             return false;
@@ -34,39 +37,62 @@ module.exports = function(grunt) {
 
       // CSS  
       var css = grunt.file.expand({filter: 'isFile'}, f.css);
-
-      cssusage.cssusage(css, markups, {}, function(report) {
-        var unused_css = [];
-
-        for (var key in report.results) {          
-          var count = report.results[key].count;
-          if (count === 0) {
-            unused_css.push(key);
-          }
-        }
-
-        if (unused_css) {
-          grunt.log.writeln('\n*************************************************************');
-          grunt.log.writeln('****************** UNUSED POSSIBLE CSS RULES ****************');
-          grunt.log.writeln('*************************************************************\n');
-        }
-        unused_css.forEach(function(selector) {
-          grunt.log.warn('rule "' + selector + '" may not be used anywhere in your app.');
-        });
-
-        if (report.csserrors) {
-          grunt.log.writeln('\n*************************************************************');
-          grunt.log.writeln('********************** CSS ERRORS ***************************');
-          grunt.log.writeln('*************************************************************\n');
-        }
-
-        report.csserrors.forEach(function(csserror) {          
-          grunt.log.errorlns(csserror);
-        });
-
+      css.forEach(function(f) {
+        if (csss.indexOf(f) < 0)
+          csss.push(f);
       });
 
+      
+      Array.prototype.push.apply(markups, files);      
+
     });
+    
+    
+    // START PROCESS
+    cssusage.cssusage(csss, markups, {}, function(report) {
+      var used_css = [];
+      var unused_css = [];
+
+      for (var key in report.results) {          
+        var count = report.results[key].count;
+        if (count === 0) {
+          unused_css.push(key);
+        }
+        else {
+         used_css.push('"' +key + '", count: ' + count); 
+        }
+      }
+
+      if (used_css) {
+        grunt.log.writeln('\n*************************************************************');
+        grunt.log.writeln('****************** USED CSS RULES COUNT ***********************');
+        grunt.log.writeln('*************************************************************\n');
+      }
+      used_css.forEach(function(count) {
+        grunt.log.writeln("rule " + count);
+      });
+
+      if (unused_css) {
+        grunt.log.writeln('\n*************************************************************');
+        grunt.log.writeln('****************** UNUSED POSSIBLE CSS RULES ****************');
+        grunt.log.writeln('*************************************************************\n');
+      }
+      unused_css.forEach(function(selector) {
+        grunt.log.warn('rule "' + selector + '" may not be used anywhere in your app.');
+      });
+
+      if (report.csserrors) {
+        grunt.log.writeln('\n*************************************************************');
+        grunt.log.writeln('********************** CSS ERRORS ***************************');
+        grunt.log.writeln('*************************************************************\n');
+      }
+
+      report.csserrors.forEach(function(csserror) {          
+        grunt.log.errorlns(csserror);
+      });
+
+    });  
+        
   });
 
 };
