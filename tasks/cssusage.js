@@ -38,8 +38,9 @@ module.exports = function(grunt) {
       // CSS  
       var css = grunt.file.expand({filter: 'isFile'}, f.css);
       css.forEach(function(f) {
-        if (csss.indexOf(f) < 0)
+        if (csss.indexOf(f) < 0) {
           csss.push(f);
+        }  
       });
 
       
