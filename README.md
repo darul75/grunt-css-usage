@@ -17,7 +17,8 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-css-usage');
 ```
 
-## The "cssusage" task
+## Cssusage task
+_Run this task with the `grunt cssusage` command._
 
 ### Overview
 In your project's Gruntfile, add a section named `cssusage` to the data object passed into `grunt.initConfig()`.
@@ -120,3 +121,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 _(Nothing yet)_
+_2012-09-10   v0.0.1_   First version, html + jade templates
