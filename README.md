@@ -1,4 +1,4 @@
-# grunt-css-usage
+# grunt-css-usage [![NPM version](https://badge.fury.io/js/grunt-css-usage.svg)](http://badge.fury.io/js/grunt-css-usage) [![Build Status](https://travis-ci.org/darul75/grunt-css-usage.png?branch=master)](https://travis-ci.org/darul75/grunt-css-usage) [![Total views](https://sourcegraph.com/api/repos/github.com/darul75/grunt-css-usage/counters/views.png)](https://sourcegraph.com/github.com/darul75/grunt-css-usage)
 
 > CSS usage, check your css rules usage
 
