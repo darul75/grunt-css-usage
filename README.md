@@ -62,18 +62,15 @@ grunt.initConfig({
 ```
 Checking css file: "test/css/sub/sub.css.
 
--- For markup file: "test/html/sub/sub.html.
+- for markup files:
 
--- For markup file: "test/html/test.html.
-
--- For markup file: "test/html/test1.html.
-
--- For markup file: "test/jade/jade1.jade.
+-- "test/html/sub/sub.html
+-- "test/html/test.html
+-- "test/html/test1.html
+-- "test/jade/jade1.jade
 
 
 Checking css file: "test/css/test.css.
-
--- For markup file: "test/html/sub/sub.html.
 
 ....
 
@@ -81,26 +78,37 @@ Checking css file: "test/css/test.css.
 **************** USED CSS RULES COUNT *********************
 ***********************************************************
 
-rule "DIV.user-badge", count: 2
-rule ".map", count: 1
-rule "body", count: 1
-rule "i.service-icon", count: 1
+List by CSS selector:
+
+-- "DIV.user-badge", count: 2
+-- ".map", count: 1
+-- "body", count: 1
+-- "i.service-icon", count: 1
 
 ***********************************************************
-**************** UNUSED POSSIBLE CSS RULES **************
+**************** UNUSED POSSIBLE CSS RULES ****************
 ***********************************************************
 
->> rule "DIV.user-badge DIV.title" may not be used anywhere in your app.
->> rule ".users-list-item" may not be used anywhere in your app.
->> rule ".media-image" may not be used anywhere in your app.
->> rule ".media-left" may not be used anywhere in your app.
->> rule ".ministats-group" may not be used anywhere in your app.
->> rule ".ministats-group > .ministats-item" may not be used anywhere in your app.
+List by CSS selector:
+
+-- "DIV.user-badge DIV.title"
+-- ".users-list-item"
+-- ".media-image"
+-- ".media-left"
+-- ".ministats-group"
+-- ".ministats-group > .ministats-item"
+-- ".ministats-group .ministats-small"
+-- "a.ministats"
+-- "a.ministats:hover"
+-- ".list-nostyle"
+-- ".type-light"
+-- ".truncate"
+-- "a:hover.link-dark"
 
 ...
 
 ***********************************************************
-******************** CSS ERRORS *************************
+******************** CSS ERRORS ***************************
 ***********************************************************
 
 >> Error: Syntax error, unrecognized expression: unsupported pseudo: hover for
