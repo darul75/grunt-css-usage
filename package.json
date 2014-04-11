@@ -1,7 +1,7 @@
 {
   "name": "grunt-css-usage",
   "description": "CSS rules usage in markups (HTML, JADE)",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/darul75/grunt-css-usage",
   "author": {
     "name": "darul",
@@ -37,7 +37,10 @@
     "grunt": "0.4.4"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "CSS",
+    "Jade",
+    "HTML"    
   ],
   "dependencies": {
     "css-parse": "1.7.0",

@@ -57,8 +57,9 @@ exports.init = function(grunt) {
       });
 
       // 2) TEST USAGE
+      grunt.log.writeln('\n- for markup files:\n');       
       html.forEach(function(filepath) {
-        grunt.log.writeln('-- For markup file: "' + filepath + '.\n');
+        grunt.log.writeln('-- "' + filepath);
 
         var ext = path.extname(filepath); // check ext        
 
@@ -93,7 +94,7 @@ exports.init = function(grunt) {
             }
           }
           catch (e) {            
-            report.csserrors.push(e + ' for selector :"' + selector + '"');            
+            report.csserrors.push(e + '\n -- for selector :"' + selector + '"');            
           }
           
         }

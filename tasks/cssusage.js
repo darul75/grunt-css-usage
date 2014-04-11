@@ -68,18 +68,21 @@ module.exports = function(grunt) {
         grunt.log.writeln('\n*************************************************************');
         grunt.log.writeln('****************** USED CSS RULES COUNT ***********************');
         grunt.log.writeln('*************************************************************\n');
+        grunt.log.writeln("List by CSS selector: \n");
       }
+      
       used_css.forEach(function(count) {
-        grunt.log.writeln("rule " + count);
+        grunt.log.writeln('-- ' + count);
       });
 
       if (unused_css) {
         grunt.log.writeln('\n*************************************************************');
         grunt.log.writeln('****************** UNUSED POSSIBLE CSS RULES ****************');
         grunt.log.writeln('*************************************************************\n');
+        grunt.log.writeln("List by CSS selector: \n");
       }
       unused_css.forEach(function(selector) {
-        grunt.log.warn('rule "' + selector + '" may not be used anywhere in your app.');
+        grunt.log.writeln('-- "' + selector + '"');
       });
 
       if (report.csserrors) {
@@ -89,7 +92,7 @@ module.exports = function(grunt) {
       }
 
       report.csserrors.forEach(function(csserror) {          
-        grunt.log.errorlns(csserror);
+        grunt.log.writeln('- ' + csserror);
       });
 
     });  
