@@ -121,4 +121,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 _(Nothing yet)_
-_2012-09-10   v0.0.1_   First version, html + jade templates
+_2014-04-11   v0.0.1_   First version, html + jade templates
